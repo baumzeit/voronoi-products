@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  --color-brand: #963d72;
+  --color-brand-light: #ead8e3;
+  --color-highlight: #e79e4f;
+
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #9ca3af;
+
+  --bg-primary: #f7f7f7;
+  --bg-primary-layer: rgba(249, 250, 251, 0.4);
+  --bg-secondary: #fff;
+
+  &.dark-mode {
+    --color-brand: #963d72;
+    --color-brand-light: #3c182e;
+    --color-highlight: #e79e4f;
+
+    --text-primary: #f9fafb;
+    --text-secondary: #dcdfe4;
+    --text-tertiary: #9ca3af;
+
+    --bg-primary: #151515;
+    --bg-primary-layer: rgba(21, 21, 21, 0.4);
+    --bg-secondary: #000;
+  }
+
+  @apply transition-colors;
+  @apply text-primary;
+  @apply bg-primary;
+  @apply font-body;
+  @apply overscroll-none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-display;
+}
+
+.stripe-pattern {
+  --stripe: currentColor;
+  background-image: linear-gradient(
+    135deg,
+    var(--stripe) 16.67%,
+    transparent 16.67%,
+    transparent 50%,
+    var(--stripe) 50%,
+    var(--stripe) 66.67%,
+    transparent 66.67%,
+    transparent 100%
+  );
+  background-size: 4.24px 4.24px;
+}
