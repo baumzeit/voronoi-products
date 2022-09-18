@@ -72,7 +72,7 @@ export function drawCell(selection: Selection<EnterElement, EnrichedDatum, SVGSV
     .append('text')
     .attr('dy', -1 * LABEL_OFFSET_Y || null)
     .text((d) => d.price || '')
-    .classed('label', true)
+    .classed('price', true)
 
   return cell
 }

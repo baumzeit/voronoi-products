@@ -27,7 +27,7 @@ export const query = graphql`
       ...ImageBase
       localFile {
         childImageSharp {
-          gatsbyImageData(width: 400)
+          gatsbyImageData(width: 500)
         }
       }
     }

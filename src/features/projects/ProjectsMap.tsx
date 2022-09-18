@@ -16,7 +16,7 @@ const ProjectsMap = ({ projects, areas }: ProductsAndCategories) => {
     width,
     minHeight: windowHeight - NAVBAR_HEIGHT,
     relMargin,
-    minTilePixels: 50000,
+    minTilePixels: 55000,
     colJitter: 0.05
   })
 

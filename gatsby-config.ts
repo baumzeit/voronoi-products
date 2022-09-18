@@ -28,10 +28,11 @@ module.exports = {
     description: `Yard Sale`,
     // twitterUsername: `@gatsbyjs`,
     // image: `/gatsby-icon.png`,
-    siteUrl: `https://shopping.colocate.dev`
+    siteUrl: `https://baumzeit.github.io/voronoi-products/`
   },
   graphqlTypegen: { typesOutputPath: 'gatsby-types.d.ts' },
   trailingSlash: 'never',
+  // pathPrefix: '/voronoi-products',
   plugins: [
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',

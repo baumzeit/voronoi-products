@@ -5,7 +5,7 @@ import React, { useCallback } from 'react'
 import { useHighlightArea } from '../project/use-highlight-area'
 
 type NavFilterAreasProps = {
-  areas: Queries.AreaBaseFragment[]
+  areas: Queries.CategoryBaseFragment[]
 }
 
 export const NavFilterAreas = ({ areas }: NavFilterAreasProps) => {
@@ -40,7 +40,7 @@ export const NavFilterAreasSelect = ({ areas }: NavFilterAreasProps) => {
   const [highlightArea, setHighlightArea] = useHighlightArea()
 
   const handleChange = useCallback(
-    (area: Queries.AreaBaseFragment) => {
+    (area: Queries.CategoryBaseFragment) => {
       const isActive = area.slug === highlightArea?.slug
       setHighlightArea(isActive || !area.slug ? null : area.slug)
     },

@@ -87,7 +87,7 @@ export const query = graphql`
         }
       }
     }
-    allStrapiCategory {
+    allStrapiCategory(sort: { fields: [name], order: ASC }) {
       edges {
         node {
           ...CategoryBase
