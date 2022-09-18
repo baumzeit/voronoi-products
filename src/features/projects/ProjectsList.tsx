@@ -2,6 +2,7 @@ import { sort } from 'd3-array'
 import { Link } from 'gatsby'
 import React, { useCallback, useMemo } from 'react'
 
+import { PATH } from '../../common/constants/paths'
 import { ProductsAndCategories } from '../../pages'
 import { ProjectBanner } from '../project/ProjectBanner'
 import { useHighlightArea } from '../project/use-highlight-area'
@@ -36,7 +37,7 @@ const ProjectsList = ({ projects }: ProductsAndCategories) => {
         {displayProjects.map((project, idx) => {
           return (
             <li key={project.id} className="overflow-hidden rounded-sm">
-              <Link to={project.slug || ''}>
+              <Link to={`${PATH.PRODUCT}/${project.slug}` || ''}>
                 <ProjectBanner project={project} index={idx} />
               </Link>
             </li>

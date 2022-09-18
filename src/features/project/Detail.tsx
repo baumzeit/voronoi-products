@@ -1,6 +1,6 @@
 import { useBreakpoint } from 'gatsby-plugin-breakpoints'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Container } from '../../common/components/Container'
 import { getStrapiImage } from '../../common/utility/get-image'
@@ -14,6 +14,12 @@ type ProductDetailProps = {
 export const ProductDetail = ({ project, nextSlug, prevSlug }: ProductDetailProps) => {
   const breakpoints = useBreakpoint()
   const coverImages = project.imagesLarge?.slice(0, breakpoints['md'] ? 2 : 1)
+
+  useEffect(() => {
+    if (project.name) {
+      window.document.title = project.name
+    }
+  }, [project.name])
 
   return project ? (
     <div className="relative min-h-full overflow-auto">

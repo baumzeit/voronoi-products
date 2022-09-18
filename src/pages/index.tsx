@@ -2,7 +2,7 @@ import { Transition } from '@headlessui/react'
 import { ArrowSmUpIcon } from '@heroicons/react/solid'
 import { graphql, PageProps } from 'gatsby'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints'
-import React, { lazy, Suspense, useMemo, useRef } from 'react'
+import React, { lazy, Suspense, useEffect, useMemo, useRef } from 'react'
 
 import Layout from '../common/components/Layout'
 import { Navbar } from '../common/components/Navbar'
@@ -25,6 +25,10 @@ const ProjectsPage = ({ data: { allStrapiCategory, allStrapiProduct } }: PagePro
   const breakpoint = useBreakpoint()
 
   const main = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    window.document.title = "Philip's Yard Sale"
+  }, [])
 
   return (
     <Layout

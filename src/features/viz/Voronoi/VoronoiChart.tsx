@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import React, { memo, SVGProps, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import './voronoi.scss'
+import { PATH } from '../../../common/constants/paths'
 import { VoronoiChartDatum } from '../../projects/use-projects-chart-data'
 import { drawVoronoi } from './helpers/draw-voronoi'
 import { highlightCellsByAreaId, hoverCell, restore, VoronoiOptions } from './helpers/voronoi-actions'
@@ -87,7 +88,14 @@ export const VoronoiChart = memo(
 
     return (
       <>
-        <Link ref={spanRef as any} key={hoveredCell} to={hoveredCell} style={{ display: 'none' }} />
+        {hoveredCell && (
+          <Link
+            ref={spanRef as any}
+            key={hoveredCell}
+            to={`${PATH.PRODUCT}/${hoveredCell}`}
+            style={{ display: 'none' }}
+          />
+        )}
 
         <svg ref={onRefChange} width={width} height={height} className="cursor-pointer voronoi animate-fadeIn">
           <defs>
