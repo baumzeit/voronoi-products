@@ -49,7 +49,7 @@ type Theme = typeof themes[number]
 
 const ThemeSelect = () => {
   // const { theme, setTheme } = useContext(ThemeContext)
-  const { value: isDark, enable, disable } = useDarkMode()
+  const { value: isDark, enable, disable } = useDarkMode(false)
 
   const theme: Theme = isDark ? 'dark' : 'light'
 

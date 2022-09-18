@@ -44,14 +44,21 @@
 
       .label {
         text-anchor: middle;
-        dominant-baseline: central;
+        // dominant-baseline: central;
         @apply fill-bg-primary;
         @apply md:text-sm xl:text-lg font-body;
+        &.price {
+          @apply md:text-sm  xl:text-base font-display;
+          @apply fill-text-primary;
+        }
       }
       .label-box,
       .focus-dot {
         @apply fill-text-primary;
         fill-opacity: 0.75;
+        &.box-price {
+          @apply fill-bg-primary;
+        }
       }
     }
 

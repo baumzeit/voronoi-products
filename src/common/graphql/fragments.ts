@@ -17,17 +17,29 @@ export const query = graphql`
   fragment ProductBase on STRAPI_PRODUCT {
     id
     name
+    model
     description
     price
     slug
     categories {
       ...CategoryBase
     }
-    images {
+    imagesSmall: images {
       ...ImageBase
       localFile {
         childImageSharp {
           gatsbyImageData(width: 500)
+        }
+      }
+    }
+  }
+  fragment ProductDetail on STRAPI_PRODUCT {
+    ...ProductBase
+    imagesLarge: images {
+      ...ImageBase
+      localFile {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }

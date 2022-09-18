@@ -5,7 +5,7 @@ import React from 'react'
 import { getStrapiImage } from '../../common/utility/get-image'
 
 export type ImagesPreviewProps = {
-  images: Queries.ProjectDetailFragment['images']
+  images: Queries.ProductDetailFragment['imagesLarge']
   selectedImageIdx?: number | null
   onClick: (idx: number) => void
   onClosePreview: () => void

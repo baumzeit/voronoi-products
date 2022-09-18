@@ -32,7 +32,7 @@ module.exports = {
   },
   graphqlTypegen: { typesOutputPath: 'gatsby-types.d.ts' },
   trailingSlash: 'never',
-  // pathPrefix: '/voronoi-products',
+  pathPrefix: process.env.NODE_ENV === 'production' ? '/voronoi-products' : '',
   plugins: [
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',

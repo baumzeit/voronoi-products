@@ -6,20 +6,20 @@ import notEmpty from '../../common/utility/not-empty'
 import { ImageContainer } from './ImageContainer'
 
 type DetailContentProps = {
-  project: Queries.ProjectDetailFragment
+  project: Queries.ProductDetailFragment
   selectedImageIdx: number | null
   onClosePreview: () => void
 }
 export const DetailBody = ({
-  project: { description, images },
+  project: { description, imagesLarge },
   selectedImageIdx,
   onClosePreview
 }: DetailContentProps) => {
   const selectedImage = useMemo(() => {
-    if (images && typeof selectedImageIdx === 'number') {
-      return images.filter(notEmpty)[selectedImageIdx]
+    if (imagesLarge && typeof selectedImageIdx === 'number') {
+      return imagesLarge.filter(notEmpty)[selectedImageIdx]
     }
-  }, [images, selectedImageIdx])
+  }, [imagesLarge, selectedImageIdx])
 
   return (
     <div className="flex-1 order-2 md:order-1">
@@ -29,7 +29,7 @@ export const DetailBody = ({
             selectedImage ? 'opacity-0 ease-in absolute overflow-hidden h-full w-full top-0 left-0' : 'opacity-100'
           }`}
         >
-          <RenderMd className={`text-justify`} content={description?.data?.description} />
+          <p className="text-justify"> {description}</p>
         </article>
         {selectedImage && (
           <div className="z-10 col-start-1 min-h-[70vw] md:min-h-0">

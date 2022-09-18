@@ -59,25 +59,20 @@ export function drawCell(selection: Selection<EnterElement, EnrichedDatum, SVGSV
     .classed('focus-dot', true)
 
   annotation
-    .append('rect')
-    .classed('label-box', true)
-    .attr('tabindex', (d) => 10 + d.index)
-
-  annotation
     .append('text')
+    .classed('label title', true)
     .attr('dy', LABEL_OFFSET_Y || null)
     .text((d) => d.title || '')
-    .classed('label', true)
   annotation
     .append('text')
-    .attr('dy', -1 * LABEL_OFFSET_Y || null)
+    .classed('label price', true)
+    .attr('dy', 30 || null)
     .text((d) => d.price || '')
-    .classed('price', true)
 
   return cell
 }
 
-export const LABEL_OFFSET_Y = -22
+export const LABEL_OFFSET_Y = -18
 
 export function updateCell(
   selection: Selection<SVGGElement, EnrichedDatum, SVGSVGElement, unknown>,
@@ -106,7 +101,8 @@ export function updateCell(
     .attr('y', (d) => d.y)
   annotation.each(function (d) {
     adjustLabel(d, this, width)
-    adjustLabelBox(d, this)
+    adjustLabelBox(d, this, '.title')
+    adjustLabelBox(d, this, '.price')
   })
 
   return selection

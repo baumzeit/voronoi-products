@@ -31,8 +31,9 @@ export const useProjectsChartData = ({
   useMemo(
     () =>
       getGridCoordinates
-        ? projects.map(({ images, id, categories, name, slug, price }, idx) => {
-            const imageData = images?.[0] ? getStrapiImage(images?.[0]) : undefined
+        ? projects.map(({ imagesSmall, id, categories, name, slug, price }, idx) => {
+            const coverImage = imagesSmall?.[0]
+            const imageData = coverImage ? getStrapiImage(coverImage) : undefined
             return {
               x: getGridCoordinates(idx)[0],
               y: getGridCoordinates(idx)[1],
@@ -40,7 +41,7 @@ export const useProjectsChartData = ({
               id: id,
               index: idx,
               title: String(name),
-              price: `${price},00 €`,
+              price: `${price} €`,
               slug: String(slug),
               areas:
                 categories?.filter(notEmpty).map((d) => ({

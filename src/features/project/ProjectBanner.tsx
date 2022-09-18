@@ -13,8 +13,8 @@ type ProjectBannerProps = {
   className?: string
 }
 export const ProjectBanner = ({ project, hideTitle, hideOverlay, index = 0, className = '' }: ProjectBannerProps) => {
-  const { highlightColor, images } = project
-  const coverImage = images?.[0]
+  const { highlightColor, imagesSmall } = project
+  const coverImage = imagesSmall?.[0]
   const gatsbyImage = coverImage ? getStrapiImage(coverImage) : undefined
   // const highlightColor = project.highlightColor
 
@@ -27,7 +27,7 @@ export const ProjectBanner = ({ project, hideTitle, hideOverlay, index = 0, clas
           <GatsbyImage
             image={gatsbyImage}
             alt={coverImage?.alternativeText || ''}
-            className={`object-cover aspect-video max-h-64 sm:aspect-square md:max-h-full object-center w-full h-full transition-all ease-out duration-700 border border-gray-100 ${
+            className={`object-cover aspect-video max-h-64 sm:aspect-square md:max-h-full object-center w-full h-full transition-all ease-out duration-700 border border-gray-100 dark:border-gray-800 ${
               !hideOverlay && !highlightColor ? 'opacity-90' : ''
             }`}
           />
@@ -47,17 +47,13 @@ export const ProjectBanner = ({ project, hideTitle, hideOverlay, index = 0, clas
 
       {!hideTitle && (
         <div className={`row-start-1 col-start-1 flex ${isEven ? 'justify-start' : 'justify-end'} items-start`}>
-          <div
-            className={`z-20 mt-[10%] ${
-              isEven ? 'text-left' : 'text-right'
-            }  bg-white/95 dark:bg-black/90 py-1 px-2 shadow-sm rounded-xs`}
-          >
-            <h2
-              className="tracking-wide  text-secondary xs:text-xl "
-              // style={{ boxShadow: '8px 0 0 var(--bg-primary), -8px 0 0 var(--bg-primary)' }}
-            >
-              {project.name}
-            </h2>
+          <div className={`z-20 mt-[10%] ${isEven ? 'text-left' : 'text-right'} `}>
+            <div className={` bg-white/95 dark:bg-black/90 py-1 px-2 shadow-sm rounded-xs`}>
+              <h2 className="tracking-wide text-secondary xs:text-xl ">{project.name}</h2>
+            </div>
+            <div className={`inline-block bg-white/95 dark:bg-black/90 mt-0.5 px-2 shadow-sm rounded-xs`}>
+              <h3 className="tracking-wide text-secondary text-sm xs:text-lg font-bold">{`${project.price} €`}</h3>
+            </div>
           </div>
         </div>
       )}

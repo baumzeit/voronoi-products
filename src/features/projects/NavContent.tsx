@@ -3,7 +3,7 @@ import React from 'react'
 
 import { NavFilterAreas, NavFilterAreasSelect } from './NavFilterAreas'
 
-type ProjectsNavContentProps = { areas: Queries.AreaBaseFragment[] }
+type ProjectsNavContentProps = { areas: Queries.CategoryBaseFragment[] }
 
 export const ProjectsNavContent = ({ areas }: ProjectsNavContentProps) => {
   const breakpoints = useBreakpoint()

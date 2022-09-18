@@ -1,5 +1,7 @@
+import { navigate } from 'gatsby'
 import React from 'react'
 
+import { PATH } from '../../../common/constants/paths'
 import { UseJitterGridReturn } from '../../../common/hooks/use-jitter-grid'
 import { useHighlightArea } from '../../project/use-highlight-area'
 import { useProjectsChartData } from '../../projects/use-projects-chart-data'
@@ -26,8 +28,8 @@ export const VoronoiContainer = ({
           data={chartData}
           width={width}
           height={height}
-          onClickCell={() => {}}
-          imageSize={Math.max(width / numCols, height / numRows) * 1.2}
+          onClickCell={(slug) => navigate(`${PATH.PRODUCT}/${slug}`)}
+          imageSize={Math.max(width / numCols, height / numRows) * 1.4}
           highlightPatternData={areas}
           highlightedAreaId={highlightArea?.id}
         />

@@ -1,3 +1,4 @@
+import { useBreakpoint } from 'gatsby-plugin-breakpoints'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import React from 'react'
 
@@ -6,25 +7,33 @@ import { getStrapiImage } from '../../common/utility/get-image'
 import { DetailContent } from './DetailContent'
 import { SliderControlProps, SliderControls } from './SliderControls'
 
-type ProjectDetailProps = {
-  project: Queries.ProjectDetailFragment
+type ProductDetailProps = {
+  project: Queries.ProductDetailFragment
 } & SliderControlProps
 
-export const ProjectDetail = ({ project, nextSlug, prevSlug }: ProjectDetailProps) => {
-  const image = getStrapiImage(project.coverImage)
+export const ProductDetail = ({ project, nextSlug, prevSlug }: ProductDetailProps) => {
+  const breakpoints = useBreakpoint()
+  const coverImages = project.imagesLarge?.slice(0, breakpoints['md'] ? 2 : 1)
 
   return project ? (
     <div className="relative min-h-full overflow-auto">
       <div className={`h-[40vh] md:h-[40vh] lg:h-[50vh] relative`}>
-        {image && (
-          <GatsbyImage
-            loading="eager"
-            image={image}
-            objectFit="cover"
-            objectPosition="50% 30%"
-            className="w-full h-full dark:opacity-90 "
-            alt={project.coverImage?.alternativeText || ''}
-          />
+        {coverImages && (
+          <div className="flex h-full">
+            {coverImages.map((d) => {
+              const image = getStrapiImage(d)
+              return image ? (
+                <GatsbyImage
+                  loading="eager"
+                  image={image}
+                  objectFit="cover"
+                  // objectPosition="50% 30%"
+                  className="w-full h-full dark:opacity-90 "
+                  alt={d?.alternativeText || ''}
+                />
+              ) : null
+            })}
+          </div>
         )}
         <div className="absolute inset-0 h-full top-[85%] bg-gradient-to-b from-transparent to-bg-primaryLayer" />
         <div className="absolute inset-0">
