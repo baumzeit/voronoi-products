@@ -6,13 +6,16 @@ import { EnrichedDatum } from './draw-voronoi'
 export function drawCell(selection: Selection<EnterElement, EnrichedDatum, SVGSVGElement, unknown>, imageSize: number) {
   const cell = selection
     .append('g')
-    .attr('clip-path', (d) => `url(#clip-${d.id})`)
+    // .attr('clip-path', (d) => `url(#clip-${d.id})`)
     .each(function (d) {
       select(this).classed(`cell id-${d.id}`, true)
     })
     .style('transform-origin', (d) => `${d.x}px ${d.y}px`)
 
-  const base = cell.append('g').classed('base', true)
+  const base = cell
+    .append('g')
+    .classed('base', true)
+    .attr('clip-path', (d) => `url(#clip-${d.id})`)
 
   base
     .append('foreignObject')
@@ -64,6 +67,11 @@ export function drawCell(selection: Selection<EnterElement, EnrichedDatum, SVGSV
     .append('text')
     .attr('dy', LABEL_OFFSET_Y || null)
     .text((d) => d.title || '')
+    .classed('label', true)
+  annotation
+    .append('text')
+    .attr('dy', -1 * LABEL_OFFSET_Y || null)
+    .text((d) => d.price || '')
     .classed('label', true)
 
   return cell

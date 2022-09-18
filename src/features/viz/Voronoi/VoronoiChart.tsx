@@ -65,14 +65,15 @@ export const VoronoiChart = memo(
           data: enrichedData,
           options: voronoiOptions,
           onClick: onClickCell,
-          onHover: (slug) => {
-            if (spanRef.current) {
-              setHoveredCell(slug)
-              const mouseOverEvent = new MouseEvent('mouseover', { bubbles: true })
-              spanRef.current?.dispatchEvent(mouseOverEvent)
-            }
-            hoverCell(svgNode)(slug)
-          },
+          onHover: hoverCell(svgNode),
+          // onHover: (slug) => {
+          //   if (spanRef.current) {
+          //     setHoveredCell(slug)
+          //     const mouseOverEvent = new MouseEvent('mouseover', { bubbles: true })
+          //     spanRef.current?.dispatchEvent(mouseOverEvent)
+          //   }
+          //   hoverCell(svgNode)(slug)
+          // },
           onMouseLeave: restore(svgNode)
         })
         setInitialized(true)
@@ -87,7 +88,7 @@ export const VoronoiChart = memo(
 
     return (
       <>
-        <Link ref={spanRef as any} key={hoveredCell} to={hoveredCell} style={{ display: 'none' }} />
+        {/* <Link ref={spanRef as any} key={hoveredCell} to={hoveredCell} style={{ display: 'none' }} /> */}
 
         <svg ref={onRefChange} width={width} height={height} className="cursor-pointer voronoi animate-fadeIn">
           <defs>

@@ -3,12 +3,12 @@ import React from 'react'
 
 import { NAVBAR_HEIGHT } from '../../common/components/Navbar'
 import { useJitterGrid } from '../../common/hooks/use-jitter-grid'
-import { ProjectsAndAreas } from '../../pages/products'
+import { ProductsAndCategories } from '../../pages'
 import { VoronoiContainer } from '../viz/Voronoi/VoronoiContainer'
 
 const relMargin = { top: 0.18, right: 0.14, bottom: 0.16, left: 0.14 }
 
-const ProjectsMap = ({ projects, areas }: ProjectsAndAreas) => {
+const ProjectsMap = ({ projects, areas }: ProductsAndCategories) => {
   const [width, windowHeight] = useWindowSize({ wait: 300 })
 
   const { getGridCoordinates, gridSpecs } = useJitterGrid({

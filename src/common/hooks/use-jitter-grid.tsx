@@ -117,7 +117,7 @@ export const useJitterGrid = ({
           })
         }
 
-        const actualRows = adoptedOrphans === numOrphans ? refRows - 1 : refRows
+        const actualRows = numOrphans > 0 && adoptedOrphans === numOrphans ? refRows - 1 : refRows
 
         const rowSpecs = getRowSpecs(actualRows)
 

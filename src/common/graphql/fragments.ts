@@ -1,25 +1,35 @@
 import { graphql } from 'gatsby'
 
 export const query = graphql`
-  # fragment ExternalLink on STRAPI__COMPONENT_SHARED_LINKS {
-  #   id
-  #   link
-  #   label
-  # }
   fragment ImageBase on STRAPI__MEDIA {
     id
     alternativeText
     caption
   }
 
+  fragment CategoryBase on STRAPI_CATEGORY {
+    id
+    name
+    slug
+    color
+  }
+
   fragment ProductBase on STRAPI_PRODUCT {
     id
     name
     description
-  }
-
-  fragment TagBase on STRAPI_TAG {
-    id
-    name
+    price
+    slug
+    categories {
+      ...CategoryBase
+    }
+    images {
+      ...ImageBase
+      localFile {
+        childImageSharp {
+          gatsbyImageData(width: 400)
+        }
+      }
+    }
   }
 `

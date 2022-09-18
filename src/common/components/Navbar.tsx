@@ -55,7 +55,7 @@ const ThemeSelect = () => {
 
   return (
     <div>
-      <Listbox value={theme} onChange={(theme) => (theme === 'light' ? disable() : enable())}>
+      <Listbox value={theme} onChange={(theme) => (theme === 'dark' ? enable() : disable())}>
         <Listbox.Button className={`px-1.5 py-0.5 rounded text-brand`}>{theme}</Listbox.Button>
         <Listbox.Options>
           {themes

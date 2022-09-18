@@ -1,4 +1,3 @@
-import { navigate } from 'gatsby'
 import React from 'react'
 
 import { UseJitterGridReturn } from '../../../common/hooks/use-jitter-grid'
@@ -8,7 +7,7 @@ import { VoronoiChart } from './VoronoiChart'
 
 type VoronoiContainerProps = {
   projects: Queries.ProductBaseFragment[]
-  areas: Queries.AreaBaseFragment[]
+  areas: Queries.CategoryBaseFragment[]
 } & Required<UseJitterGridReturn>
 
 export const VoronoiContainer = ({
@@ -20,15 +19,14 @@ export const VoronoiContainer = ({
   const [highlightArea] = useHighlightArea()
 
   const chartData = useProjectsChartData({ projects, getGridCoordinates })
-
   return (
     <>
-      <div id="voronoiContainer">
+      <div id="voronoiContainer" className="overflow-x-hidden">
         <VoronoiChart
           data={chartData}
           width={width}
           height={height}
-          onClickCell={navigate}
+          onClickCell={() => {}}
           imageSize={Math.max(width / numCols, height / numRows) * 1.2}
           highlightPatternData={areas}
           highlightedAreaId={highlightArea?.id}

@@ -10,6 +10,7 @@ export type VoronoiChartDatum = Point & {
   imgSrc: string | undefined
   id: string
   title: string
+  price: string
   slug: string
   areas: {
     color: string
@@ -30,21 +31,19 @@ export const useProjectsChartData = ({
   useMemo(
     () =>
       getGridCoordinates
-        ? projects.map(({ coverImage, id, areas, title, slug }, idx) => {
-            const imageData = getStrapiImage(coverImage)
+        ? projects.map(({ images, id, categories, name, slug, price }, idx) => {
+            const imageData = images?.[0] ? getStrapiImage(images?.[0]) : undefined
             return {
               x: getGridCoordinates(idx)[0],
               y: getGridCoordinates(idx)[1],
               imgSrc: imageData ? getSrc(imageData) : '',
-              // imageSrcSet: imageData
-              //   ? getSrcSet(imageData) || 'https://picsum.photos/600/300'
-              //   : 'https://picsum.photos/600/' + (idx % 3 ? (idx % 2 ? '500' : '600') : '400'),
               id: id,
               index: idx,
-              title: String(title),
+              title: String(name),
+              price: `${price},00 €`,
               slug: String(slug),
               areas:
-                areas?.filter(notEmpty).map((d) => ({
+                categories?.filter(notEmpty).map((d) => ({
                   color: String(d.color),
                   name: String(d.name),
                   id: d.id

@@ -19,13 +19,13 @@ const strapiConfig = {
   //     }
   //   }
   // ],
-  collectionTypes: ['tag', 'product']
+  collectionTypes: ['category', 'product']
 }
 
 module.exports = {
   siteMetadata: {
-    title: 'Voronoi Shopping',
-    description: `Voronoi Shopping`,
+    title: 'Yard Sale',
+    description: `Yard Sale`,
     // twitterUsername: `@gatsbyjs`,
     // image: `/gatsby-icon.png`,
     siteUrl: `https://shopping.colocate.dev`

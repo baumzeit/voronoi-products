@@ -4,23 +4,23 @@ import { graphql, PageProps } from 'gatsby'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints'
 import React, { lazy, Suspense, useMemo, useRef } from 'react'
 
-import Layout from '../../common/components/Layout'
-import { Navbar } from '../../common/components/Navbar'
-import { areasAtom, projectsAtom } from '../../common/contexts/atoms'
-import { assertAndExtractNodes } from '../../common/utility/assert-and-extract-nodes'
-import { ProjectsNavContent } from '../../features/projects/NavContent'
+import Layout from '../common/components/Layout'
+import { Navbar } from '../common/components/Navbar'
+import { areasAtom, projectsAtom } from '../common/contexts/atoms'
+import { assertAndExtractNodes } from '../common/utility/assert-and-extract-nodes'
+import { ProjectsNavContent } from '../features/projects/NavContent'
 
-const ProjectsList = lazy(() => import('../../features/projects/ProjectsList'))
-const ProjectsMap = lazy(() => import('../../features/projects/ProjectsMap'))
+const ProjectsList = lazy(() => import('../features/projects/ProjectsList'))
+const ProjectsMap = lazy(() => import('../features/projects/ProjectsMap'))
 
-export type ProjectsAndAreas = {
+export type ProductsAndCategories = {
   projects: Queries.ProductBaseFragment[]
-  areas: Queries.AreaBaseFragment[]
+  areas: Queries.CategoryBaseFragment[]
 }
 
-const ProjectsPage = ({ data: { allStrapiArea, allStrapiProject } }: PageProps<Queries.ProjectsPageDataQuery>) => {
-  const areas = useMemo(() => assertAndExtractNodes(allStrapiArea), [allStrapiArea])
-  const projects = useMemo(() => assertAndExtractNodes(allStrapiProject), [allStrapiProject])
+const ProjectsPage = ({ data: { allStrapiCategory, allStrapiProduct } }: PageProps<Queries.ProductsPageDataQuery>) => {
+  const areas = useMemo(() => assertAndExtractNodes(allStrapiCategory), [allStrapiCategory])
+  const projects = useMemo(() => assertAndExtractNodes(allStrapiProduct), [allStrapiProduct])
 
   const breakpoint = useBreakpoint()
 
@@ -78,8 +78,8 @@ const ProjectsPage = ({ data: { allStrapiArea, allStrapiProject } }: PageProps<Q
 }
 
 export const query = graphql`
-  query ProeuctsPageData {
-    allStrapiProduct(sort: { fields: [createdAt], order: DESC }) {
+  query ProductsPageData {
+    allStrapiProduct(sort: { fields: [price], order: DESC }) {
       totalCount
       edges {
         node {
@@ -87,10 +87,10 @@ export const query = graphql`
         }
       }
     }
-    allStrapiTag {
+    allStrapiCategory {
       edges {
         node {
-          ...TagBase
+          ...CategoryBase
         }
       }
     }

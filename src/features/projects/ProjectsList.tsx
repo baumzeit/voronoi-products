@@ -2,19 +2,19 @@ import { sort } from 'd3-array'
 import { Link } from 'gatsby'
 import React, { useCallback, useMemo } from 'react'
 
-import { ProjectsAndAreas } from '../../pages/products'
+import { ProductsAndCategories } from '../../pages'
 import { ProjectBanner } from '../project/ProjectBanner'
 import { useHighlightArea } from '../project/use-highlight-area'
 
 export type DisplayProject = Queries.ProductBaseFragment & { highlightColor?: string | null }
 
-const ProjectsList = ({ projects }: ProjectsAndAreas) => {
+const ProjectsList = ({ projects }: ProductsAndCategories) => {
   const [highlightArea] = useHighlightArea()
   const highlightAreaSlug = highlightArea?.slug
 
   const areaMatch = useCallback(
     (project: Queries.ProductBaseFragment) =>
-      Boolean(!highlightAreaSlug || project.areas?.map((area) => area?.slug).includes(highlightAreaSlug)),
+      Boolean(!highlightAreaSlug || project.categories?.map((area) => area?.slug).includes(highlightAreaSlug)),
     [highlightAreaSlug]
   )
 

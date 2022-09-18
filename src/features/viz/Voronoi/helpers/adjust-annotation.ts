@@ -1,7 +1,7 @@
 import { select } from 'd3-selection'
 
 import { LABEL_OFFSET_Y } from './draw-cell'
-import { EnrichedDatum } from './voronoi-actions'
+import { EnrichedDatum } from './draw-voronoi'
 
 export function adjustLabelBox(d: EnrichedDatum, cell: SVGGElement) {
   const box = select(cell).select<SVGTextElement>('.label')?.node()?.getBBox()
